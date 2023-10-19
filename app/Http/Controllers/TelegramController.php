@@ -1,6 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
+
+
+use Illuminate\Http\Request;
+
 class TelegramController extends Controller
 {
     public $chat_id, $text;
@@ -28,13 +33,14 @@ class TelegramController extends Controller
         }
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        if ($this->text == "/start"){
-            return $this->bot('sendMessage', [
-                'chat_id' => $this->chat_id,
-                'text' => "Assalomu alekum"
-            ]);
-        }
+        dd($request);
+//        if ($this->text == "/start"){
+//            return $this->bot('sendMessage', [
+//                'chat_id' => $this->chat_id,
+//                'text' => "Assalomu alekum"
+//            ]);
+//        }
     }
 }
