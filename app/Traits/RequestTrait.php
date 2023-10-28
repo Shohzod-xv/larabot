@@ -20,4 +20,5 @@ trait RequestTrait
             return json_decode($response);
         }
     }
+
 }
