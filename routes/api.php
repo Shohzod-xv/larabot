@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::any('/'.env("TELEGRAM_TOKEN"), [TelegramController::class, 'index'])->name('webhook');
+Route::any('/{key}', [TelegramController::class, 'index'])->name('webhook');
 
