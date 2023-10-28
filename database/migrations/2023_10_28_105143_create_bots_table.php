@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('bots', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unique('token');
-            $table->unique('key');
+            $table->string('token');
+            $table->string('key');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
