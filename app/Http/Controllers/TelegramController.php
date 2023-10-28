@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bot;
 use App\Traits\MakeComponentsTrait;
 use App\Traits\RequestTrait;
 
@@ -12,6 +13,9 @@ class TelegramController extends Controller
 
     public function webhook(): array
     {
+
+        $bot = Bot::query()->where('key', "qwerty")->first();
+        dd($bot);
         return $this->apiRequest('setWebhook',[
             'url' => url(route('webhook',['key' => "qwerty"]))
         ]) ? ['success'] : ['danger'];
