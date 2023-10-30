@@ -13,10 +13,7 @@ class TelegramController extends Controller
 
     public function webhook(): array
     {
-
-        $bot = Bot::query()->where('key', "qwerty")->first();
-        dd($bot->token);
-        return $this->apiRequest('setWebhook',[
+        return $this->apiRequest('setWebhook', 'qwerty',[
             'url' => url(route('webhook',['key' => "qwerty"]))
         ]) ? ['success'] : ['danger'];
     }
