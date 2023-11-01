@@ -25,7 +25,7 @@ class TelegramController extends Controller
         $userId = $result->message->from->id;
 
         if ($action == "/start"){
-            $text = route('webhook');
+            $text = url(route('webhook',['key' => "qwerty"]));
             $this->apiRequest('sendMessage',[
                 'chat_id' => $userId,
                 'text' => $text
