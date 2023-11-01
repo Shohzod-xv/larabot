@@ -3,14 +3,15 @@
 namespace App\Traits;
 
 use App\Models\Bot;
-use App\Models\User;
 
 trait RequestTrait
 {
-    private function apiRequest($method, $parameters = [])
+
+    private function apiRequest($request, $method, $parameters = [])
     {
-//        $bot = Bot::query()->where('key', $key)->first();
-        $url = "https://api.telegram.org/bot". "5939347329:AAH5el7Gry0CMTpnIReGzM04yFF6TU45ADY" . "/" . $method;
+        $key = $request->route('key');
+        $bot = Bot::query()->where('key', $key)->first();
+        $url = "https://api.telegram.org/bot". $bot->token . "/" . $method;
         $ch = curl_init();
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);

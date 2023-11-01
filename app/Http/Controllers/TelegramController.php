@@ -11,9 +11,9 @@ class TelegramController extends Controller
     use RequestTrait;
     use MakeComponentsTrait;
 
-    public function webhook(): array
+    public function webhook(Request $request): array
     {
-        return $this->apiRequest('setWebhook',[
+        return $this->apiRequest($request,'setWebhook',[
             'url' => url(route('webhook',['key' => "qwerty"]))
         ]) ? ['success'] : ['danger'];
     }
@@ -25,10 +25,9 @@ class TelegramController extends Controller
         $userId = $result->message->from->id;
 
         if ($action == "/start"){
-            $key = $request->route('key');
-            $this->apiRequest('sendMessage',[
+            $this->apiRequest($request,'sendMessage',[
                 'chat_id' => $userId,
-                'text' => $key
+                'text' => "Assalomu alekum"
             ]);
         }
     }
