@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/webhook', [TelegramController::class, 'webhook'])->name('webhook');
+Route::get('/webhook', [TelegramController::class, 'webhook']);
