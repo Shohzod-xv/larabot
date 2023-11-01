@@ -3,13 +3,19 @@
 namespace App\Traits;
 
 use App\Models\Bot;
+use Illuminate\Http\Request;
 
 trait RequestTrait
 {
 
-    private function apiRequest($request, $method, $parameters = [])
+    public function __construct(protected Request $request)
     {
-        $key = $request->route('key');
+    }
+
+    private function apiRequest($method, $parameters = [])
+    {
+        $key = $this->request->route('key');
+        dd($key);
         $bot = Bot::query()->where('key', $key)->first();
         $url = "https://api.telegram.org/bot". $bot->token . "/" . $method;
         $ch = curl_init();
