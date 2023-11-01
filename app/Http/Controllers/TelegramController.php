@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bot;
 use App\Traits\MakeComponentsTrait;
 use App\Traits\RequestTrait;
+use Illuminate\Http\Request;
 
 class TelegramController extends Controller
 {
@@ -18,17 +18,17 @@ class TelegramController extends Controller
         ]) ? ['success'] : ['danger'];
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $result = json_decode(file_get_contents('php://input'));
         $action = $result->message->text;
         $userId = $result->message->from->id;
 
         if ($action == "/start"){
-            $text = url(route('webhook',['key' => "qwerty"]));
+            $key = $request->route('key');
             $this->apiRequest('sendMessage',[
                 'chat_id' => $userId,
-                'text' => $text
+                'text' => $key
             ]);
         }
     }
