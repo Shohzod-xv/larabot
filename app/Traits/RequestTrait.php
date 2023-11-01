@@ -14,7 +14,7 @@ trait RequestTrait
 
     private function apiRequest($method, $parameters = [])
     {
-        $key = $this->request->route('key');
+        $key = Request::route('key');
         dd($key);
         $bot = Bot::query()->where('key', $key)->first();
         $url = "https://api.telegram.org/bot". $bot->token . "/" . $method;
