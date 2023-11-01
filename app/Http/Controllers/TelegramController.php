@@ -14,7 +14,7 @@ class TelegramController extends Controller
     public function webhook(): array
     {
         return $this->apiRequest('setWebhook',[
-            'url' => url(route('webhook',['key' => "qwerty"]))
+            'url' => url(route('webhook',['qwerty']))
         ]) ? ['success'] : ['danger'];
     }
 
